@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .main {
+    margin-top: 50px;
+    background-color: rgb(34,34,34);     
+    padding: 10px;
+    border-radius: 8px;
+    color: #FFF;
+
+    h1{
+      margin: 1rem 0;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin: 0.5rem 0;
+    }
+
+    
+  }
+}

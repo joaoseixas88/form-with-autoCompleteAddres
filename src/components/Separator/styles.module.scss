@@ -3,6 +3,12 @@
   flex-direction: row;
   gap: 2rem;
   width: 100%;
-  justify-content: space-around;
+  // justify-content: ;
   padding: 0.3rem 1rem;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+  }
 }

@@ -20,7 +20,7 @@ export const schema = yup.object({
             return;
           }
           resolve(true);
-        });
+        }).catch(err => resolve(false));
       });
     }),
 });

@@ -11,11 +11,19 @@
     background-color: rgb(34,34,34);     
     padding: 10px;
     border-radius: 8px;
+
+    @media (max-width: 600px) {
+      width: 80%;
+      align-items: center;
+    }
   }
 
   .title{
     color: white;
     margin-left: 1rem;
+    @media (max-width: 600px) {
+      margin-left: 5rem;
+    }
   }  
 
   form{

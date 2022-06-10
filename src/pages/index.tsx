@@ -1,14 +1,20 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect } from "react";
 import { Input } from "../components/Input/index";
 import { PrimaryButton } from "../components/PrimaryButton/index";
 import { Separator } from "../components/Separator/index";
 import styles from "../styles/Home.module.scss";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../services/api";
 import { isValidCEP } from "@brazilian-utils/brazilian-utils";
 import * as yup from "yup";
 import { schema } from "../utils/form-schema";
+import Head from "next/head";
+import { useDispatch, useSelector } from "react-redux";
+import { save } from "../store/address";
+import { useRouter } from "next/router";
+import { useAppDispatch } from "../store";
+import { FormData } from '../utils/types'
 
 interface ViaCepResponse {
   bairro: string;
@@ -19,15 +25,17 @@ interface ViaCepResponse {
 }
 
 export default function Home() {
-  
- 
+  const { push } = useRouter();
 
+  const dispatch = useAppDispatch();
+
+  console.log(dispatch);
   const {
     handleSubmit,
     control,
     setValue,
     watch,
-    
+
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -37,10 +45,9 @@ export default function Home() {
     const response = await api.get(`${cep}/json/`);
     const address: ViaCepResponse = response.data;
 
-    if(address.erro){
-      return
+    if (address.erro) {
+      return;
     }
-    
     setValue("street", address.logradouro);
     setValue("neighborhood", address.bairro);
     setValue("city", address.localidade);
@@ -49,18 +56,21 @@ export default function Home() {
   };
 
   useEffect(() => {
-    
     if (isValidCEP(watchedAddressCode)) {
-
       setAddress(watchedAddressCode);
     }
-    
   }, [watchedAddressCode]);
-  const onSubmit = (data: FormData) => {
-    alert(JSON.stringify(data));
+
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    dispatch(save(data));
+    push("/result");
   };
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Confirmação de endereço</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <main className={styles.main}>
         <h1 className={styles.title}>Endereço</h1>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -113,9 +123,7 @@ export default function Home() {
               required
             />
           </Separator>
-          <Separator
-            style={{ flexDirection: "row", justifyContent: "flex-start" }}
-          >
+          <Separator>
             <Input
               control={control}
               name={"Complemento"}
