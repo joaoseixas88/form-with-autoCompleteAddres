@@ -1,0 +1,28 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+ 
+
+  main {
+    margin-top: 50px;
+    background-color: rgb(34,34,34);     
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .title{
+    color: white;
+    margin-left: 1rem;
+  }  
+
+  form{
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+

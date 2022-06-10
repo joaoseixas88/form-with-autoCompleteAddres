@@ -1,0 +1,47 @@
+.container {
+  color: #fff;
+  label, input {
+    display: block;
+    
+  }
+
+  label{
+    margin-left: 3px;
+  }
+  input{
+    margin: 2px;
+    padding: 5px;
+    border-radius: 5px;
+    border-style: none;
+    background-color: #2D2D2D;
+    border-color: none;
+    color: #fff;
+    &:hover{
+      background-color: rgb(51, 50, 50);
+    }
+
+    &:focus{
+      
+      background-color: rgb(51, 50, 50);
+      border: 1px solid rgb(171, 11, 134);
+      outline: none;
+    }
+    
+  }
+
+  span {
+    color: rgb(171, 11, 134);
+  }
+  p{
+    color: rgb(171, 11, 134);
+    font-size: 0.8rem;
+    .visible{
+      
+      
+    }
+
+
+
+  }
+  
+}

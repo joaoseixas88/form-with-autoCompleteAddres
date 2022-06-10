@@ -1,0 +1,33 @@
+.container{
+  background-color: rgb(171, 11, 134);
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-radius: 10px;
+  margin: 10px;
+
+  transition: 0.4s;
+
+  &:hover{
+    opacity: .6;
+    
+  }
+
+  .button{
+    border-radius: 10px;
+    width: 100px;
+    padding: 5px;
+    height: 100%;
+    background: none;
+    padding: 0.5rem;
+    border: none;
+    color: #FFF;
+    font-weight: bold;
+    cursor: pointer;
+    
+    
+  }
+
+  
+}
